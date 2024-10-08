@@ -53,6 +53,7 @@ import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.mya.ui.screens.ComponentsScreen
 import com.example.mya.ui.screens.HomeScreen
 import com.example.mya.ui.screens.MenuScreen
 
@@ -61,7 +62,7 @@ import com.example.mya.ui.screens.MenuScreen
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //enableEdgeToEdge()
+        enableEdgeToEdge()
         setContent {
 
             ComposeMultiScreenApp()
@@ -315,6 +316,7 @@ fun SetupNavGraph(navController: NavHostController){
     NavHost(navController = navController, startDestination = "menu"){
         composable("menu"){ MenuScreen(navController)}
         composable("home"){ HomeScreen(navController) }
+        composable("components"){ ComponentsScreen(navController) }
     }
 }
 
