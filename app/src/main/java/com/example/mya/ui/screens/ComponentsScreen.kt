@@ -27,6 +27,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Settings
@@ -85,6 +86,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -100,6 +102,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Popup
 import androidx.navigation.NavController
 import com.example.mya.R
+import com.example.mya.data.model.MenuModel
 import com.example.mya.data.model.PostModel
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -110,7 +113,20 @@ import java.util.Locale
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ComponentsScreen(navController: NavController){
-    var component by remember { mutableStateOf("")}//para actualizar el valor de la variable en la interfaz
+
+    var menuOptions = arrayOf(
+        MenuModel(1,"Buttons", "Buttons",Icons.Filled.AccountBox),
+        MenuModel(2,"FloatingButtons", "FloatingButtons", Icons.Filled.DateRange),
+        MenuModel(2,"Chips", "Chips", Icons.Filled.DateRange),
+        MenuModel(2,"Progress", "Progress", Icons.Filled.DateRange),
+        MenuModel(2,"Sliders", "Sliders", Icons.Filled.DateRange),
+        MenuModel(2,"Switches", "Switches", Icons.Filled.DateRange),
+        MenuModel(2,"Badges", "Badges", Icons.Filled.DateRange),
+        MenuModel(2,"Content 2", "Content 2", Icons.Filled.DateRange),
+        MenuModel(2,"Content 2", "Content 2", Icons.Filled.DateRange),
+    )
+
+    var component by rememberSaveable { mutableStateOf("")}//para actualizar el valor de la variable en la interfaz
     var drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     var scope = rememberCoroutineScope()
     ModalNavigationDrawer(
@@ -120,12 +136,29 @@ fun ComponentsScreen(navController: NavController){
             ModalDrawerSheet {
                 Text("Menu", modifier = Modifier .padding(16.dp))
                 HorizontalDivider()
-                //Chats
+
+                LazyColumn {
+                    items(menuOptions){item -> NavigationDrawerItem(
+                        icon = {Icon(item.icon, contentDescription = "")},
+                        label = { Text(text = item.title)},
+                        selected = false,
+                        onClick = {
+                            component =item.option
+                            scope.launch {
+                                drawerState.apply {
+                                    close()
+                                }
+                            }
+                        }
+                    )  }
+                }
+                /*
+                //Content1
                 NavigationDrawerItem(
-                    label = { Text("Chats") },
+                    label = { Text("Conten1") },
                     selected = false,
                     onClick = {
-                        component ="Chats"
+                        component ="Content1"
                         scope.launch {
                             drawerState.apply {
                                 close()
@@ -290,15 +323,18 @@ fun ComponentsScreen(navController: NavController){
                             }
                         }
                     }
-                )
+                )*/
             }
         }
     ) {
         //Screen Content
         Column {
             when(component){
-                "Chats" -> {
-                    Chats()
+                "Conten1" -> {
+                    Content1()
+                }
+                "Conten2" -> {
+                    Content2()
                 }
                 "Buttons" -> {
                     Buttons()
