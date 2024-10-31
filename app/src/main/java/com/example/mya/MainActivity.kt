@@ -318,7 +318,7 @@ fun SetupNavGraph(navController: NavHostController){
         composable("menu"){ MenuScreen(navController)}
         composable("home"){ HomeScreen(navController)}
         composable("components"){ ComponentsScreen(navController)}
-        composable("login"){ LoginScreen(navController)}
+        composable("login"){ LoginScreen(navController) }
     }
 }
 
