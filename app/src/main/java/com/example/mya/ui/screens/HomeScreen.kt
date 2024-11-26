@@ -115,7 +115,6 @@ fun HomeScreen(navController: NavController, viewModel: ServiceViewModel=android
                         showBottomSheet = true
                     }
                 )
-
             }
         }
 
