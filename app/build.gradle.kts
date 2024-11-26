@@ -1,11 +1,12 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.devtools.ksp")
 }
 
 android {
     namespace = "com.example.mya"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.mya"
@@ -74,10 +75,12 @@ dependencies {
 
     implementation("io.coil-kt:coil-compose:2.0.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+    implementation(libs.androidx.room.common)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.runtime.android)
+
     implementation(libs.androidx.foundation.layout.android)
-    implementation(libs.androidx.foundation.layout.android)
-    implementation(libs.androidx.foundation.layout.android)
-    implementation(libs.androidx.foundation.layout.android)
+
     //implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 
     //implementation(libs.androidx.navigation.runtime.ktx)
@@ -91,4 +94,8 @@ dependencies {
 
     implementation("androidx.biometric:biometric:1.1.0")
     implementation(libs.androidx.appcompat)
+
+    //SQLite
+    val room_version = "2.6.1"
+    ksp("android.room:room-compiler:$room_version")
 }

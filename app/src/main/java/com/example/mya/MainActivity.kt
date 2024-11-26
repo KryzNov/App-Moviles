@@ -2,6 +2,7 @@ package com.example.mya
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.mya.data.model.database.AppDatabase
+import com.example.mya.data.model.database.DatabaseProvider
 import com.example.mya.ui.screens.CameraScreen
 import com.example.mya.ui.screens.ComponentsScreen
 import com.example.mya.ui.screens.HomeScreen
@@ -20,8 +23,15 @@ import com.example.mya.ui.screens.MenuScreen
 //import androidx.navigation.compose.NavHostController
 
 class MainActivity : AppCompatActivity() {
+    lateinit var database: AppDatabase
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        try {
+            database = DatabaseProvider.getDatabase(this)
+            Log.d("DB","Database loaded successfully")
+        } catch (exception:Exception){
+            Log.d("DB", "error: $exception")
+        }
         enableEdgeToEdge()
         setContent {
 
