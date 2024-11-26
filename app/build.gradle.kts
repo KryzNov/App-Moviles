@@ -78,6 +78,9 @@ dependencies {
     implementation(libs.androidx.room.common)
     implementation(libs.androidx.room.ktx)
     implementation(libs.androidx.room.runtime.android)
+
+    implementation(libs.androidx.foundation.layout.android)
+
     //implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 
     //implementation(libs.androidx.navigation.runtime.ktx)
