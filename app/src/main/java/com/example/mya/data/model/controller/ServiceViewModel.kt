@@ -2,10 +2,10 @@ package com.example.mya.data.model.controller
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.android.volley.Response
 import com.example.mya.data.model.ServiceModel
 import com.example.mya.data.model.network.RetrofitClient
 import kotlinx.coroutines.launch
+import retrofit2.Response
 
 
 class ServiceViewModel: ViewModel() {
@@ -30,7 +30,7 @@ class ServiceViewModel: ViewModel() {
             }
         }
     }
-    fun createServices(service: ServiceModel,onResult: (Response<List<ServiceModel>>)->Unit) {
+    fun createServices(service: ServiceModel,onResult: (Response<ServiceModel>)->Unit) {
         viewModelScope.launch {
             try{
                 val response = api.createService(service)

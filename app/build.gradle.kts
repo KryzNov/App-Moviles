@@ -74,6 +74,10 @@ dependencies {
 
     implementation("io.coil-kt:coil-compose:2.0.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
+    implementation(libs.androidx.foundation.layout.android)
+    implementation(libs.androidx.foundation.layout.android)
+    implementation(libs.androidx.foundation.layout.android)
+    implementation(libs.androidx.foundation.layout.android)
     //implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
 
     //implementation(libs.androidx.navigation.runtime.ktx)
